@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:14:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 17:44:17 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:34:36 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int thread_main(t_data *data)
 	i = 0;
 	tmp = data->philo;
 	pthread_mutex_init(&data->running_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
 	while (i < data->nb_philo)
 	{
 		pthread_create(&tmp->thread, NULL, (void *)philo_life, tmp);
