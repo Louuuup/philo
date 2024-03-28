@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:27:18 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 17:37:23 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:39:59 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	int running;
 	pthread_mutex_t running_mutex;
 	pthread_mutex_t print_mutex;
+	pthread_mutex_t die_mutex;
 	long start_time;
 	t_philo *philo;
 	int nb_philo;
@@ -67,36 +68,39 @@ enum e_status
 
 //=========================parse.c=========================//
 
-int parse_main(int argc, char *argv[]);
-int	parse_args(int argc, char *argv[], t_data *data);
+int		parse_main(int argc, char *argv[]);
+int		parse_args(int argc, char *argv[], t_data *data);
 //=========================actions.c=========================//
 
 void    philo_life(t_philo *philo);
 void	p_die(t_philo *philo); 
 //=========================time.c=========================//
 
-void print_time(void);
-long start_time(void);
-long get_time(void);
-void spend_time(t_philo *philo, int ms);
+void	print_time(void);
+long	start_time(void);
+long	get_time(void);
+void	spend_time(t_philo *philo, int ms);
 //=========================printer.c=========================//
 
-void print_status(t_philo *philo);
+void	print_status(t_philo *philo);
 //=========================utils.c=========================//
 
-t_data *get_data(void);
-int is_philo_alive(t_philo *philo);
-int error_str(char *str);
+void	stop(void);
+t_data	*get_data(void);
+int		is_philo_alive(t_philo *philo);
+int		error_str(char *str);
 //=========================main.c=========================//
 
-int thread_main(t_data *data);
-int is_running(void);
-void stop(void);
+int		thread_main(t_data *data);
+int		is_running(void);
 
 
 //tmp
-void philo_status(t_philo *philo);
-void print_data(t_data *data);
-void    test_sleep_accuracy(void);
+void	philo_status(t_philo *philo);
+void	print_data(t_data *data);
+void	test_sleep_accuracy(void);
 
 #endif
+
+
+////CHECK pour atomic variables

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:53:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 16:27:04 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:19:13 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void print_time(void)
 
     gettimeofday(&tv, NULL);
     printf(TIME_IN);
-    printf("%05ld", tv.tv_sec * 1000 + tv.tv_usec / 1000 - get_data()->start_time);
+    printf("%09ld", tv.tv_sec * 1000 + tv.tv_usec / 1000 - get_data()->start_time);
     printf(TIME_OUT);
 }
 

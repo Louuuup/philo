@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:55:13 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 17:37:46 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:15:31 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,13 @@ static void p_think(t_philo *philo)
 
 void    philo_life(t_philo *philo)
 {
+    while (is_running() == FALSE)
+        ;
+    if (philo->id % 2 == 0)
+        usleep(2);
 	while (is_philo_alive(philo) == TRUE)
 	{
+        // printf("Cycle: %d, status = %d, is_running = %d\n", philo->id, philo->status, is_running());
 		if (is_philo_alive(philo) == TRUE)
 			p_eat(philo);
 		if (is_philo_alive(philo) == TRUE)
@@ -93,7 +98,12 @@ void    philo_life(t_philo *philo)
 
 void p_die(t_philo *philo)
 {
-    philo->status = DEAD;
-	stop();
-    print_status(philo);
+    pthread_mutex_lock(&get_data()->running_mutex);
+    if (philo->status != DEAD)
+    {
+        philo->status = DEAD;
+        print_status(philo);
+    	stop();
+    }
+    pthread_mutex_unlock(&get_data()->running_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:14:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/25 14:34:36 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:24:05 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ int is_running(void)
 	return (data->running);
 }
 
-void stop(void)
-{
-	t_data *data;
-
-	data = get_data();
-	pthread_mutex_lock(&data->running_mutex);
-	data->running = FALSE;
-	pthread_mutex_unlock(&data->running_mutex);
-
-}
 void join_philos(t_data *data)
 {
 	t_philo *tmp;
@@ -44,26 +34,25 @@ void join_philos(t_data *data)
 
 	i = 0;
 	tmp = data->philo;
-	// printf("Closing philos\n");
-	while (i < data->nb_philo)
+	printf("Closing %d philos\n", data->nb_philo);
+	while (tmp && i < data->nb_philo)
 	{
+		printf("Closing philo %d...\n ", tmp->id);
 		pthread_join(tmp->thread, NULL);
+		printf("Done!\n");
 		tmp = tmp->next;
 		i++;
 	}
+	printf("All philos closed\n");
 }
-int	main(int argc, char *argv[])
-{
-	t_data *data;
 
-	data = get_data();
-	
-	if (parse_main(argc, argv))
-		return (1);
-	data->running = TRUE;
-	// test_sleep_accuracy();
-	thread_main(data);
-	return (0);
+
+static void mutex_init(t_data *data)
+{
+	// printf("mutex init\n");
+	pthread_mutex_init(&data->running_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->die_mutex, NULL);
 }
 
 int thread_main(t_data *data)
@@ -73,14 +62,14 @@ int thread_main(t_data *data)
 
 	i = 0;
 	tmp = data->philo;
-	pthread_mutex_init(&data->running_mutex, NULL);
-	pthread_mutex_init(&data->print_mutex, NULL);
 	while (i < data->nb_philo)
 	{
+		printf("Creating philo %d\n", tmp->id);
 		pthread_create(&tmp->thread, NULL, (void *)philo_life, tmp);
 		tmp = tmp->next;
 		i++;
 	}
+	pthread_mutex_unlock(&data->running_mutex);
 	while (TRUE)
 	{
 		if (is_running() == FALSE)
@@ -92,5 +81,21 @@ int thread_main(t_data *data)
 		else
 			usleep(1000);
 	}
+	return (0);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_data *data;
+
+	data = get_data();
+	
+	if (parse_main(argc, argv))
+		return (1);
+	// test_sleep_accuracy();
+	data->running = TRUE;
+	mutex_init(data);
+	pthread_mutex_lock(&data->running_mutex);
+	thread_main(data);
 	return (0);
 }
