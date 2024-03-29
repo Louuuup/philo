@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:14:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/28 15:24:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:37:12 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void join_philos(t_data *data)
 	t_philo *tmp;
 	int i;
 
+	i = 0;
+	tmp = data->philo;
+	while (tmp && i < data->nb_philo)
+	{
+		pthread_mutex_unlock(&tmp->fork);
+		tmp = tmp->next;
+		i++;
+	}
 	i = 0;
 	tmp = data->philo;
 	printf("Closing %d philos\n", data->nb_philo);

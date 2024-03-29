@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:39:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 17:42:36 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:22:03 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	parse_args(int argc, char *argv[], t_data *data)
         data->nb_eat = ft_atoi(argv[5]);
     else
         data->nb_eat = -1;
-    if (data->nb_philo < 2 || data->time_to_die < 60 || data->time_to_eat < 60
+    if (data->nb_philo < 1 || data->time_to_die < 60 || data->time_to_eat < 60
         || data->time_to_sleep < 60 || (argc == 6 && data->nb_eat < 1))
         return (1);
     return (0);

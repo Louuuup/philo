@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:27:18 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/28 17:39:59 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:13:45 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo
 {
 	int id;
 	int status;
+	int ate;
 	long last_eat_time;
 	pthread_t thread;
 	pthread_mutex_t fork;
@@ -83,8 +84,10 @@ void	spend_time(t_philo *philo, int ms);
 //=========================printer.c=========================//
 
 void	print_status(t_philo *philo);
+void	take_forks(t_philo *philo);
 //=========================utils.c=========================//
 
+int		ate_enough(t_philo *philo);
 void	stop(void);
 t_data	*get_data(void);
 int		is_philo_alive(t_philo *philo);

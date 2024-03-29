@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:44:17 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/28 15:28:29 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:13:17 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,19 @@ int error_str(char *str)
 
 int is_philo_alive(t_philo *philo)
 {
-    pthread_mutex_lock(&get_data()->print_mutex);
     // printf("is_philo_alive #%d: ", philo->id);
     if (philo->status == DEAD || is_running() == FALSE)
     {
         // printf("status %d and dead\n", philo->status);
-        pthread_mutex_unlock(&get_data()->print_mutex);
         return (FALSE);
     }
     if (philo->last_eat_time + get_data()->time_to_die < get_time())
     {   
         p_die(philo);
         // printf("just dead\n");
-        pthread_mutex_unlock(&get_data()->print_mutex);
         return (FALSE);
     }
     // printf("alive and well\n");
-    pthread_mutex_unlock(&get_data()->print_mutex);
     return (TRUE);
 }
 
@@ -56,4 +52,16 @@ void stop(void)
 	data = get_data();
     printf("Stopping philos\n");
 	data->running = FALSE;
+}
+
+int ate_enough(t_philo *philo)
+{
+    t_data *data;
+    
+    data = get_data();
+    if (data->nb_eat == -1)
+        return (FALSE);
+    if (philo->ate >= data->nb_eat)
+        return (TRUE);
+    return (FALSE);
 }

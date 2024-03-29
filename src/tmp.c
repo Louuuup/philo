@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:19:11 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/21 17:43:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:51:57 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void print_data(t_data *data)
     printf("Time to die: %d\n", data->time_to_die);
     printf("Time to eat: %d\n", data->time_to_eat);
     printf("Time to sleep: %d\n", data->time_to_sleep);
-    printf("Time it takes to eat: %d\n", data->time_to_eat);
     printf("Running: %d\n", data->running);
     printf("Start time: %ld\n", data->start_time);
 }
