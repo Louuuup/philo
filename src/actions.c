@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:55:13 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/29 14:25:41 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:45:59 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ void    philo_life(t_philo *philo)
 {
     while (is_running() == FALSE)
         ;
-    if (!philo->id % 2)
+    if (philo->id % 2 == 0)
         usleep(70);
     else if (get_data()->nb_philo % 2 == 1 && philo->id == get_data()->nb_philo)
         usleep(70);
-	while (is_philo_alive(philo) == TRUE)
+    while (is_philo_alive(philo) == TRUE)
 	{
-        // printf("Cycle: %d, status = %d, is_running = %d\n", philo->id, philo->status, is_running());
 		if (is_philo_alive(philo) == TRUE)
 			p_think(philo);
         if (get_data()->nb_philo == 1)
@@ -64,8 +63,8 @@ void    philo_life(t_philo *philo)
         }
 		if (is_philo_alive(philo) == TRUE)
 			p_eat(philo);
-        // if (ate_enough(philo) == TRUE)
-        //     break ;
+        if (ate_enough(philo) == TRUE)
+            break ;
 		if (is_philo_alive(philo) == TRUE)
 			p_sleep(philo);
 	}

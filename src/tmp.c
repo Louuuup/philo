@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:19:11 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/29 12:51:57 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:53:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,26 @@ void print_data(t_data *data)
     printf("Start time: %ld\n", data->start_time);
 }
 
+void spend_time_alt(int ms)
+{
+    struct timeval  start;
+    struct timeval  end;
+    long            seconds;
+    long            microseconds;
+    double          elapsed_milliseconds;
+
+    gettimeofday(&start, NULL);
+    while (TRUE)
+    {
+        gettimeofday(&end, NULL);
+        seconds = end.tv_sec - start.tv_sec;
+        microseconds = end.tv_usec - start.tv_usec;
+        elapsed_milliseconds = seconds * 1000 + microseconds / 1000.0;
+        if (elapsed_milliseconds > ms)
+                break ;
+    }
+}
+
 void    test_sleep_accuracy(void)
 {
     struct timeval  start;
@@ -60,7 +80,7 @@ void    test_sleep_accuracy(void)
 
     gettimeofday(&start, NULL);
     //
-    spend_time(get_data()->philo, TEST_TIME);
+    spend_time_alt(TEST_TIME);
     //
     gettimeofday(&end, NULL);
     //

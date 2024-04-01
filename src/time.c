@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:53:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/28 15:19:13 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:52:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void print_time(void)
 
     gettimeofday(&tv, NULL);
     printf(TIME_IN);
-    printf("%09ld", tv.tv_sec * 1000 + tv.tv_usec / 1000 - get_data()->start_time);
+    printf("%09ld", get_time());
     printf(TIME_OUT);
 }
 
@@ -47,7 +47,7 @@ void spend_time(t_philo *philo, int ms)
     double          elapsed_milliseconds;
 
     gettimeofday(&start, NULL);
-    while (1)
+    while (TRUE)
     {
         gettimeofday(&end, NULL);
         seconds = end.tv_sec - start.tv_sec;
@@ -59,3 +59,4 @@ void spend_time(t_philo *philo, int ms)
             break ;
     }
 }
+

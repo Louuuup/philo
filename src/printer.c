@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:47:36 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/29 13:42:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:11:28 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void print_status(t_philo *philo)
     if (philo->status == THINKING)
         printf("Philo #%03d is thinking\n", philo->id);
     else if (philo->status == EATING)
+	{
+		philo->ate++;
+        // printf("Philo #%03d is eating (%d)\n", philo->id, philo->ate);
         printf("Philo #%03d is eating\n", philo->id);
-    else if (philo->status == SLEEPING)
+	}
+	else if (philo->status == SLEEPING)
         printf("Philo #%03d is sleeping\n", philo->id);
     else if (philo->status == DEAD)
         printf("Philo #%03d is dead\n", philo->id);

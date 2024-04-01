@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:44:17 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/29 14:13:17 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:23:34 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int ate_enough(t_philo *philo)
     if (data->nb_eat == -1)
         return (FALSE);
     if (philo->ate >= data->nb_eat)
+    {
+        get_data()->ate_enough++;
+        // printf("Philo #%d ate enough\n", philo->id);
+        if (get_data()->ate_enough == get_data()->nb_philo)
+            stop();
         return (TRUE);
+    }
     return (FALSE);
 }

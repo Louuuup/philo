@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:27:18 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/03/29 14:13:45 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:21:36 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+#include <stdatomic.h>
 
 //==================VALUES===================//
 # define DEBUG_ON 1
@@ -50,6 +51,7 @@ typedef struct s_data
 	pthread_mutex_t running_mutex;
 	pthread_mutex_t print_mutex;
 	pthread_mutex_t die_mutex;
+	atomic_int ate_enough;
 	long start_time;
 	t_philo *philo;
 	int nb_philo;
