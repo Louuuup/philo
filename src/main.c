@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:14:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/04/01 16:59:55 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:14:30 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ int thread_main(t_data *data)
 
 	i = 0;
 	tmp = data->philo;
-	while (i < data->nb_philo)
+	while (tmp)
 	{
-		// printf("Creating philo %d\n", tmp->id);
+        if (tmp->id > 170)
+			printf("Creating philo thread #%d\n", tmp->id);
 		pthread_create(&tmp->thread, NULL, (void *)philo_life, tmp);
 		tmp = tmp->next;
 		i++;
@@ -94,14 +95,18 @@ int thread_main(t_data *data)
 int	main(int argc, char *argv[])
 {
 	t_data *data;
-
-	data = get_data();
+    t_philo philo[200];
 	
-	if (parse_main(argc, argv))
+	philo_init(philo);
+	data = get_data();
+	if (parse_main(philo, argc, argv))
 		return (1);
+	printf("Running...\n");
+	// philo_test(data, "main");
 	data->running = TRUE;
 	// test_sleep_accuracy();
 	mutex_init(data);
+	// philo_status(data->philo);
 	pthread_mutex_lock(&data->running_mutex);
 	thread_main(data);
 	return (0);

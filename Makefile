@@ -19,7 +19,7 @@ LIBFT_DIR   := $(LIB_DIR)/libft
 #Shell cmd
 
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -Wunreachable-code -Ofast -g #-fsanitize=address
+CFLAGS := -Wall -Werror -Wextra -Wunreachable-code -Ofast -g -fsanitize=address
 MKDIRP := mkdir -p
 DELETE := rm -rf
 # headers to include

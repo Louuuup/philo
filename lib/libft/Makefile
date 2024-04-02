@@ -6,7 +6,7 @@
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2024/03/10 16:00:44 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2024/04/02 15:07:15 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRC = ft_bzero.c \
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 BOBJS = $(addprefix $(BIN_DIR)/, $(BSRC:.c=.o))
 NAME = libft.a
-CFLAGS = -Wall -Werror -Wextra -o test
+CFLAGS = -Wall -Werror -Wextra -o test -g
 LIBC = ar rc
 LIBR = ranlib
 RM = rm -f

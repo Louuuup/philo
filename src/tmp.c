@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:19:11 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/04/01 16:53:24 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:13:12 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void philo_status(t_philo *philo)
             printf("sleeping\n");
         else if (tmp->status == DEAD)
             printf("dead\n");
-        printf("Left fork: %p\n",  &tmp->fork);
+        printf("\n");
         tmp = tmp->next;
         i++;
     }
@@ -90,4 +90,19 @@ void    test_sleep_accuracy(void)
     //
     printf("Expected sleep duration:\t%d ms\n", TEST_TIME);
     printf("Actual sleep duration:\t\t%.2f ms\n", elapsed_milliseconds);
+}
+
+void philo_test(t_data *data, char *str)
+{
+    t_philo *tmp;
+    
+    tmp = data->philo;
+    printf("\nPhilo_test: %s\n", str);
+    while (tmp != NULL)
+    {
+        if (tmp->id > 180)
+    		printf("philo id: %d\n", tmp->id);
+        tmp = tmp->next;
+    }
+    printf("\n");
 }

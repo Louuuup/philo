@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:27:18 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2024/04/01 17:21:36 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:12:36 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ enum e_status
 
 //=========================parse.c=========================//
 
-int		parse_main(int argc, char *argv[]);
+void	philo_init(t_philo philo[200]);
+int		parse_main(t_philo philo[200], int argc, char *argv[]);
 int		parse_args(int argc, char *argv[], t_data *data);
 //=========================actions.c=========================//
 
@@ -104,6 +105,7 @@ int		is_running(void);
 void	philo_status(t_philo *philo);
 void	print_data(t_data *data);
 void	test_sleep_accuracy(void);
+void philo_test(t_data *data, char *str);
 
 #endif
 
